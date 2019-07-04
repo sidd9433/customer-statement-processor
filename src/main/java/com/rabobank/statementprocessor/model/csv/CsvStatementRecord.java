@@ -7,7 +7,7 @@ public class CsvStatementRecord {
     @CsvBindByName
     private String reference;
 
-    @CsvBindByName
+    @CsvBindByName(column = "Account Number")
     private String accountNumber;
 
     @CsvBindByName

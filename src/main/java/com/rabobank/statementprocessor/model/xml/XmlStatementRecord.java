@@ -3,6 +3,7 @@ package com.rabobank.statementprocessor.model.xml;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public class XmlStatementRecord {
+
     @JacksonXmlProperty(isAttribute = true)
     private String reference;
 

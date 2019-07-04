@@ -1,16 +1,14 @@
 package com.rabobank.statementprocessor.model;
 
+import java.util.Objects;
+
 public class StatementRecord {
+
     private Long reference;
-
     private String accountNumber;
-
     private String description;
-
     private Double startBalance;
-
     private Double mutation;
-
     private Double endBalance;
 
     public Long getReference() {
@@ -59,5 +57,19 @@ public class StatementRecord {
 
     public void setEndBalance(Double endBalance) {
         this.endBalance = endBalance;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        StatementRecord that = (StatementRecord) obj;
+        return Objects.equals(reference, that.reference);
+    }
+
+    @Override
+    public int hashCode() {
+        return reference != null ? reference.hashCode() : 0;
     }
 }

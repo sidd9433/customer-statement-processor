@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class CsvProcessor implements FileProcessor {
     @Override
-    public StatementInput process(InputStream inputStream) throws StatementProcessException {
+    public StatementInput process(InputStream inputStream) {
         List<CsvStatementRecord> csvStatementRecords;
         try {
             csvStatementRecords = new CsvToBeanBuilder<CsvStatementRecord>(new BufferedReader(new InputStreamReader(inputStream)))

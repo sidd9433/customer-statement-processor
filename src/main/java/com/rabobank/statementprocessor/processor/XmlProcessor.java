@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class XmlProcessor implements FileProcessor {
     @Override
-    public StatementInput process(InputStream inputStream) throws StatementProcessException {
+    public StatementInput process(InputStream inputStream) {
         ObjectMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new ParameterNamesModule());
         xmlMapper.registerModule(new Jdk8Module());

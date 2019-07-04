@@ -1,10 +1,9 @@
 package com.rabobank.statementprocessor.processor;
 
-import com.rabobank.statementprocessor.exception.StatementProcessException;
 import com.rabobank.statementprocessor.model.StatementInput;
 
 import java.io.InputStream;
 
 public interface FileProcessor {
-    StatementInput process(InputStream inputStream) throws StatementProcessException;
+    StatementInput process(InputStream inputStream);
 }

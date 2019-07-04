@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StatementInput {
 
-    List<StatementRecord> input;
+    private List<StatementRecord> input;
 
     public List<StatementRecord> getInput() {
         return input;
