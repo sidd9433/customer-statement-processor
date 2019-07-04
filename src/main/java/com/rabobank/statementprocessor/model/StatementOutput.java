@@ -2,7 +2,7 @@ package com.rabobank.statementprocessor.model;
 
 import java.util.List;
 
-public class StatementOutput {
+public final class StatementOutput {
 
     private List<ValidationResult> result;
 

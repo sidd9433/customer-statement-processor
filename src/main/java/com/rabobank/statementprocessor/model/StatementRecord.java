@@ -1,15 +1,16 @@
 package com.rabobank.statementprocessor.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
-public class StatementRecord {
+public final class StatementRecord {
 
     private Long reference;
     private String accountNumber;
     private String description;
-    private Double startBalance;
-    private Double mutation;
-    private Double endBalance;
+    private BigDecimal startBalance;
+    private BigDecimal mutation;
+    private BigDecimal endBalance;
 
     public Long getReference() {
         return reference;
@@ -35,27 +36,27 @@ public class StatementRecord {
         this.description = description;
     }
 
-    public Double getStartBalance() {
+    public BigDecimal getStartBalance() {
         return startBalance;
     }
 
-    public void setStartBalance(Double startBalance) {
+    public void setStartBalance(BigDecimal startBalance) {
         this.startBalance = startBalance;
     }
 
-    public Double getMutation() {
+    public BigDecimal getMutation() {
         return mutation;
     }
 
-    public void setMutation(Double mutation) {
+    public void setMutation(BigDecimal mutation) {
         this.mutation = mutation;
     }
 
-    public Double getEndBalance() {
+    public BigDecimal getEndBalance() {
         return endBalance;
     }
 
-    public void setEndBalance(Double endBalance) {
+    public void setEndBalance(BigDecimal endBalance) {
         this.endBalance = endBalance;
     }
 

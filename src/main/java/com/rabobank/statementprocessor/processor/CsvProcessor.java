@@ -9,6 +9,7 @@ import com.rabobank.statementprocessor.model.csv.CsvStatementRecord;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,9 +44,9 @@ public class CsvProcessor implements FileProcessor {
         statementRecord.setReference(Long.parseLong(record.getReference()));
         statementRecord.setAccountNumber(record.getAccountNumber());
         statementRecord.setDescription(record.getDescription());
-        statementRecord.setStartBalance(Double.parseDouble(record.getStartBalance()));
-        statementRecord.setMutation(Double.parseDouble(record.getMutation()));
-        statementRecord.setEndBalance(Double.parseDouble(record.getEndBalance()));
+        statementRecord.setStartBalance(new BigDecimal(record.getStartBalance()));
+        statementRecord.setMutation(new BigDecimal(record.getMutation()));
+        statementRecord.setEndBalance(new BigDecimal(record.getEndBalance()));
         return statementRecord;
     }
 }

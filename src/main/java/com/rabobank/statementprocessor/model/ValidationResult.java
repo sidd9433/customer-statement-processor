@@ -1,6 +1,6 @@
 package com.rabobank.statementprocessor.model;
 
-public class ValidationResult {
+public final class ValidationResult {
 
     private Long reference;
     private String description;

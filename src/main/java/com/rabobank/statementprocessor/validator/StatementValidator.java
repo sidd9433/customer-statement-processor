@@ -13,7 +13,7 @@ public class StatementValidator {
     public static List<ValidationResult> validate(StatementInput input) {
         return input.getInput()
                 .parallelStream()
-                .filter(record -> isReferenceUnique(input, record) || isEndBalanceCorrect(record))
+                .filter(record -> isReferenceUnique(input, record) || isEndBalanceNotCorrect(record))
                 .map(StatementValidator::createValidationResult)
                 .collect(Collectors.toList());
     }
@@ -22,8 +22,8 @@ public class StatementValidator {
         return Collections.frequency(input.getInput(), record) > 1;
     }
 
-    private static boolean isEndBalanceCorrect(StatementRecord record) {
-        return Double.valueOf(Double.sum(record.getStartBalance(), record.getMutation())).equals(record.getEndBalance());
+    private static boolean isEndBalanceNotCorrect(StatementRecord record) {
+        return !record.getStartBalance().add(record.getMutation()).equals(record.getEndBalance());
     }
 
     private static ValidationResult createValidationResult(StatementRecord record) {

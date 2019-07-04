@@ -3,7 +3,7 @@ package com.rabobank.statementprocessor.model;
 
 import java.util.List;
 
-public class StatementInput {
+public final class StatementInput {
 
     private List<StatementRecord> input;
 

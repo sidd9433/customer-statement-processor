@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotNull;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("customer/api/v1/")
 public class StatementProcessorController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(StatementProcessorController.class);
