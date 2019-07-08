@@ -13,12 +13,12 @@ public class StatementValidator {
     public static List<ValidationResult> validate(StatementInput input) {
         return input.getInput()
                 .parallelStream()
-                .filter(record -> isReferenceUnique(input, record) || isEndBalanceNotCorrect(record))
+                .filter(record -> isReferenceNotUnique(input, record) || isEndBalanceNotCorrect(record))
                 .map(StatementValidator::createValidationResult)
                 .collect(Collectors.toList());
     }
 
-    private static boolean isReferenceUnique(StatementInput input, StatementRecord record) {
+    private static boolean isReferenceNotUnique(StatementInput input, StatementRecord record) {
         return Collections.frequency(input.getInput(), record) > 1;
     }
 
