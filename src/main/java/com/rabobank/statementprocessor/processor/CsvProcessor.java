@@ -23,7 +23,7 @@ public class CsvProcessor implements FileProcessor {
                     .withType(CsvStatementRecord.class)
                     .build()
                     .parse();
-        } catch (NumberFormatException | IllegalStateException exception) {
+        } catch (NumberFormatException | IllegalStateException | NullPointerException exception) {
             throw new StatementProcessException("Invalid CSV file", exception);
         }
         return convert(csvStatementRecords);

@@ -1,6 +1,8 @@
 package com.rabobank.statementprocessor.service;
 
+import com.rabobank.statementprocessor.exception.StatementProcessException;
 import com.rabobank.statementprocessor.model.StatementOutput;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -19,11 +21,21 @@ public class StatementProcessorServiceTest {
     MultipartFile multipartFile;
     private StatementProcessorService service = new StatementProcessorService();
 
+    @Before
+    public void init() {
+        when(multipartFile.getContentType()).thenReturn("text/csv");
+    }
+
     @Test
     public void executeSuccess() throws IOException {
-        when(multipartFile.getContentType()).thenReturn("text/csv");
         when(multipartFile.getInputStream()).thenReturn(getClass().getResourceAsStream("/records.csv"));
         StatementOutput output = service.execute(multipartFile);
         assertEquals(3, output.getResult().size());
+    }
+
+    @Test(expected = StatementProcessException.class)
+    public void executeFailure() throws IOException {
+        when(multipartFile.getInputStream()).thenReturn(getClass().getResourceAsStream("/invalid.csv"));
+        service.execute(multipartFile);
     }
 }

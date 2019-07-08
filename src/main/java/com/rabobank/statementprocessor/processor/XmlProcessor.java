@@ -27,7 +27,7 @@ public class XmlProcessor implements FileProcessor {
         XmlStatementRecords statementRecords;
         try {
             statementRecords = xmlMapper.readValue(inputStream, XmlStatementRecords.class);
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             throw new StatementProcessException("Invalid xml file", e);
         }
         return convert(statementRecords);

@@ -41,11 +41,20 @@ public class StatementProcessorControllerTest {
     }
 
     @Test
-    public void testUploadFile() throws Exception {
+    public void testUploadFileSuccess() throws Exception {
         MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "records.xml", "multipart/form-data", is);
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.multipart("/customer/api/v1/process-statement").file(mockMultipartFile).contentType(MediaType.MULTIPART_FORM_DATA))
-                .andExpect(MockMvcResultMatchers.status().is(200)).andReturn();
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andReturn();
         assertEquals(200, result.getResponse().getStatus());
         assertNotNull(result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testUploadFileHttp404() throws Exception {
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "records.xml", "multipart/form-data", is);
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.multipart("/process-statement").file(mockMultipartFile).contentType(MediaType.MULTIPART_FORM_DATA))
+                .andExpect(MockMvcResultMatchers.status().is(404)).andReturn();
+        assertEquals(404, result.getResponse().getStatus());
     }
 }
