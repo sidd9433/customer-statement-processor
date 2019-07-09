@@ -36,7 +36,7 @@ public class XmlProcessor implements FileProcessor {
     private StatementInput convert(XmlStatementRecords statementRecords) {
 
         StatementInput statementInput = new StatementInput();
-        statementInput.setInput(statementRecords.getXmlStatementRecords()
+        statementInput.setInput(statementRecords.getXmlRecords()
                 .stream()
                 .map(this::mapXmlStatementRecord)
                 .collect(Collectors.toList()));

@@ -25,7 +25,7 @@
  
  * The API can be reached at http://localhost:8080/customer/api/v1/process-statement
  * Upload the csv or xml file as 'file' attribute in POST body
- 
+
 ## Design principle
 
 * All the modules ate loosely coupled & they have specific role to play.
@@ -40,8 +40,12 @@
 * ```FileProcessorFactory``` is to create input file processor based on the file type
 * ```StatementValidator``` is for the validations.
 
+## Code quality
+
+ * SonarQube scan: ``mvn clean verify -P sonar``
+ * SonarQube dashboard https://sonarcloud.io/dashboard?id=sidd9433_customer-statement-processor
+
 ## Scope for betterment
 
 * Validator could have been designed in a better way, may be using `Factory` or `Chain of responsibility`.
-* Sonar scanning configuration.
 * JenkinsFile for CI/ CD pipeline.

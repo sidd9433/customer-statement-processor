@@ -3,6 +3,11 @@ package com.rabobank.statementprocessor.processor;
 import com.rabobank.statementprocessor.enums.FileType;
 
 public class FileProcessorFactory {
+
+    private FileProcessorFactory() {
+        throw new IllegalStateException("Factory class, not meant to be instantiated");
+    }
+
     public static FileProcessor getFileProcessor(FileType fileType) {
         switch (fileType) {
             case CSV:

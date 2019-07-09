@@ -1,6 +1,7 @@
 package com.rabobank.statementprocessor.controller;
 
 import com.rabobank.statementprocessor.exception.StatementProcessException;
+import com.rabobank.statementprocessor.model.StatementOutput;
 import com.rabobank.statementprocessor.service.StatementProcessorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("customer/api/v1/")
 public class StatementProcessorController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(StatementProcessorController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StatementProcessorController.class);
 
     private StatementProcessorService statementProcessorService;
 
@@ -25,12 +26,12 @@ public class StatementProcessorController {
     }
 
     @PostMapping("process-statement")
-    public ResponseEntity<?> handleCsrFile(@NotNull @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<StatementOutput> handleCsrFile(@NotNull @RequestParam("file") MultipartFile file) {
         return ResponseEntity.ok(statementProcessorService.execute(file));
     }
 
     @ExceptionHandler(StatementProcessException.class)
-    public ResponseEntity<?> handleStatementProcessException(RuntimeException re) {
+    public ResponseEntity<String> handleStatementProcessException(RuntimeException re) {
         LOGGER.info("Exception in process", re);
         return ResponseEntity.badRequest().body("Exception in process" + re.getMessage());
     }

@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 
 public class StatementValidator {
 
+    private StatementValidator() {
+        throw new IllegalStateException("Utility class, not meant to be instantiated");
+    }
+
     public static List<ValidationResult> validate(StatementInput input) {
         return input.getInput()
                 .parallelStream()

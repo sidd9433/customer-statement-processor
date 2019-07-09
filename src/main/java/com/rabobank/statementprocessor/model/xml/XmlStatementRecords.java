@@ -11,13 +11,13 @@ public class XmlStatementRecords {
 
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "record")
-    private List<XmlStatementRecord> xmlStatementRecords;
+    private List<XmlStatementRecord> xmlRecords;
 
-    public List<XmlStatementRecord> getXmlStatementRecords() {
-        return xmlStatementRecords;
+    public List<XmlStatementRecord> getXmlRecords() {
+        return xmlRecords;
     }
 
-    public void setXmlStatementRecords(List<XmlStatementRecord> xmlStatementRecords) {
-        this.xmlStatementRecords = xmlStatementRecords;
+    public void setXmlRecords(List<XmlStatementRecord> xmlRecords) {
+        this.xmlRecords = xmlRecords;
     }
 }

@@ -14,9 +14,8 @@ public enum FileType {
     private static final Map<String, FileType> fileTypeMap;
 
     static {
-        Map<String, FileType> map =
-                fileTypeMap = Collections.unmodifiableMap(Arrays.stream(FileType.values())
-                        .collect(Collectors.toMap(item -> item.mimeType, item -> item)));
+        fileTypeMap = Collections.unmodifiableMap(Arrays.stream(FileType.values())
+                .collect(Collectors.toMap(item -> item.mimeType, item -> item)));
     }
 
     private String mimeType;
