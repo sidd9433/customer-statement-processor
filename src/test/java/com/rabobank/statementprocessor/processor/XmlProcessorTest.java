@@ -25,6 +25,12 @@ public class XmlProcessorTest {
     }
 
     @Test(expected = StatementProcessException.class)
+    public void processFailureWrongData() {
+        FileProcessor xmlProcessor = new XmlProcessor();
+        xmlProcessor.process(getClass().getResourceAsStream("/wrong_records.xml"));
+    }
+
+    @Test(expected = StatementProcessException.class)
     public void processFailure() {
         FileProcessor xmlProcessor = new XmlProcessor();
         xmlProcessor.process(getClass().getResourceAsStream("/invalid.xml"));

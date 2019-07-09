@@ -18,7 +18,13 @@ public class CsvProcessorTest {
     }
 
     @Test(expected = StatementProcessException.class)
-    public void processFailure() {
+    public void processFailureWrongData() {
+        FileProcessor csvProcessor = new CsvProcessor();
+        csvProcessor.process(getClass().getResourceAsStream("/wrong_records.csv"));
+    }
+
+    @Test(expected = StatementProcessException.class)
+    public void processFailureWrongFile() {
         FileProcessor csvProcessor = new CsvProcessor();
         csvProcessor.process(getClass().getResourceAsStream("/invalid.csv"));
     }
