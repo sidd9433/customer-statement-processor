@@ -44,13 +44,18 @@ public class XmlProcessor implements FileProcessor {
     }
 
     private StatementRecord mapXmlStatementRecord(XmlStatementRecord record) {
+
         StatementRecord statementRecord = new StatementRecord();
-        statementRecord.setReference(Long.parseLong(record.getReference()));
-        statementRecord.setAccountNumber(record.getAccountNumber());
-        statementRecord.setDescription(record.getDescription());
-        statementRecord.setStartBalance(new BigDecimal(record.getStartBalance()));
-        statementRecord.setMutation(new BigDecimal(record.getMutation()));
-        statementRecord.setEndBalance(new BigDecimal(record.getEndBalance()));
+        try {
+            statementRecord.setReference(Long.parseLong(record.getReference()));
+            statementRecord.setAccountNumber(record.getAccountNumber());
+            statementRecord.setDescription(record.getDescription());
+            statementRecord.setStartBalance(new BigDecimal(record.getStartBalance()));
+            statementRecord.setMutation(new BigDecimal(record.getMutation()));
+            statementRecord.setEndBalance(new BigDecimal(record.getEndBalance()));
+        } catch (NumberFormatException nfe) {
+            throw new StatementProcessException("Can't map xml data. Please check the input", nfe);
+        }
         return statementRecord;
     }
 }

@@ -20,6 +20,6 @@ public class CsvProcessorTest {
     @Test(expected = StatementProcessException.class)
     public void processFailure() {
         FileProcessor csvProcessor = new CsvProcessor();
-        StatementInput input = csvProcessor.process(getClass().getResourceAsStream("/invalid.csv"));
+        csvProcessor.process(getClass().getResourceAsStream("/invalid.csv"));
     }
 }

@@ -27,6 +27,6 @@ public class XmlProcessorTest {
     @Test(expected = StatementProcessException.class)
     public void processFailure() {
         FileProcessor xmlProcessor = new XmlProcessor();
-        StatementInput input = xmlProcessor.process(getClass().getResourceAsStream("/invalid.xml"));
+        xmlProcessor.process(getClass().getResourceAsStream("/invalid.xml"));
     }
 }

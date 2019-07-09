@@ -1,5 +1,6 @@
 package com.rabobank.statementprocessor.controller;
 
+import com.rabobank.statementprocessor.exception.StatementProcessException;
 import com.rabobank.statementprocessor.service.StatementProcessorService;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StatementProcessorControllerTest {
@@ -56,5 +58,14 @@ public class StatementProcessorControllerTest {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.multipart("/process-statement").file(mockMultipartFile).contentType(MediaType.MULTIPART_FORM_DATA))
                 .andExpect(MockMvcResultMatchers.status().is(404)).andReturn();
         assertEquals(404, result.getResponse().getStatus());
+    }
+
+    @Test
+    public void testFailure() throws Exception {
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("file", is);
+        when(controller.handle(mockMultipartFile)).thenThrow(new StatementProcessException("Unexpected Exception"));
+        mockMvc.perform(MockMvcRequestBuilders.multipart("/customer/api/v1/process-statement").file(mockMultipartFile).contentType(MediaType.MULTIPART_FORM_DATA))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.content().string("Exception in process: Unexpected Exception"));
     }
 }

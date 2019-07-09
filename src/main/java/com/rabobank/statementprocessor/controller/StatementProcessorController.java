@@ -26,13 +26,13 @@ public class StatementProcessorController {
     }
 
     @PostMapping("process-statement")
-    public ResponseEntity<StatementOutput> handleCsrFile(@NotNull @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<StatementOutput> handle(@NotNull @RequestParam("file") MultipartFile file) {
         return ResponseEntity.ok(statementProcessorService.execute(file));
     }
 
     @ExceptionHandler(StatementProcessException.class)
     public ResponseEntity<String> handleStatementProcessException(RuntimeException re) {
         LOGGER.info("Exception in process", re);
-        return ResponseEntity.badRequest().body("Exception in process" + re.getMessage());
+        return ResponseEntity.badRequest().body("Exception in process: " + re.getMessage());
     }
 }

@@ -40,13 +40,18 @@ public class CsvProcessor implements FileProcessor {
     }
 
     private StatementRecord mapCsvStatementRecord(CsvStatementRecord record) {
+
         StatementRecord statementRecord = new StatementRecord();
-        statementRecord.setReference(Long.parseLong(record.getReference()));
-        statementRecord.setAccountNumber(record.getAccountNumber());
-        statementRecord.setDescription(record.getDescription());
-        statementRecord.setStartBalance(new BigDecimal(record.getStartBalance()));
-        statementRecord.setMutation(new BigDecimal(record.getMutation()));
-        statementRecord.setEndBalance(new BigDecimal(record.getEndBalance()));
+        try {
+            statementRecord.setReference(Long.parseLong(record.getReference()));
+            statementRecord.setAccountNumber(record.getAccountNumber());
+            statementRecord.setDescription(record.getDescription());
+            statementRecord.setStartBalance(new BigDecimal(record.getStartBalance()));
+            statementRecord.setMutation(new BigDecimal(record.getMutation()));
+            statementRecord.setEndBalance(new BigDecimal(record.getEndBalance()));
+        } catch (NumberFormatException nfe) {
+            throw new StatementProcessException("Can't map csv data. Please check the input", nfe);
+        }
         return statementRecord;
     }
 }
